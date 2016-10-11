@@ -1,0 +1,50 @@
+# Installation
+## Ruby and Rails version
+We use [rbenv](https://github.com/rbenv/rbenv) and [rbenv-gemset](https://github.com/jf/rbenv-gemset).
+So please install `rbenv` and `rbenv-gemset` first.
+
+Then 
+```bash
+$ cd /path/to/tickets
+$ bundle
+$ rails db:create
+$ rails db:migrate
+$ puma # Then you can go to http://localhost:3000/
+```
+
+# TODO
+* Versioning API. Before releasing our public API into the wild, we should consider implementing some form of versioning. Versioning breaks our API up into multiple version namespaces, such as v1 and v2, so that we can maintain backwards compatibility for existing clients whenever we introduce breaking changes into your API, simply by incrementing your API version.
+Then we will GET like this: http://api.mysite.com/v1/users/
+
+
+
+
+# Design
+## Tickets
+Here are five values for status: New, Open, Pending, Solved, Closed. A ticket's status can be set and updated either manually by an agent or via an action in an automation, macro, or trigger. The status can only be changed to Closed via automations and triggers (not manually).
+
+* New means that the request was received but that it has not been opened and has probably not been assigned to an agent. The New status can indicate that the support team is evaluating it to determine who should be assigned to resolve it.
+
+* Open means that the request has been assigned to an agent who is working to resolve it.
+
+* Pending means that the assigned agent has a follow-up question for the requester. The agent may need more information about the support issue. Requests that are set to Pending typically remain that way until the requester responds and provides the information the agent needs to continue resolving the request.
+
+* Solved means that the agent has resolved the support issue. Solved tickets are closed, typically, a number of days after they have been set to Solved (you can control when your tickets are closed by modifying the automation that is used to close tickets). Until a ticket is closed, the requester can reopen the ticket. For example, the requester may not agree with the agent that the support issue is resolved.
+
+* Closed means that the ticket is complete and can't be reopened. Requesters however can create follow-up requests for closed requests.
+
+
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...

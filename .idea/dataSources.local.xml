@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - tickets_development@localhost" uuid="410df700-d472-4d3d-b0dc-b83cd05d63d9">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>tickets_development.*</schema-pattern>
+      <default-schemas>tickets_development.*</default-schemas>
+    </data-source>
+  </component>
+</project>
