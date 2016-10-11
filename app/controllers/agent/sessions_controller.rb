@@ -1,8 +1,6 @@
 class Agent::SessionsController < ApplicationController
   def create
     data = ActiveModelSerializers::Deserialization.jsonapi_parse(params)
-    puts "======= agent session data is #{data.inspect} =================="
-    Rails.logger.info params.to_yaml
 
     agent = Agent.where(email: data[:email]).first
     head 406 and return unless agent

@@ -4,8 +4,6 @@ class AdminBaseController < ApplicationController
   private
 
   def validate_administrator_login
-    puts "administrator request.parameters is #{request.parameters.inspect}"
-
     token = request.headers["X-Api-Key"]
     return unless token
 

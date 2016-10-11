@@ -3,7 +3,6 @@ class Agent::TicketItemsController < AgentBaseController
   before_action :validate_type, only: [:create]
 
   def create
-    puts "--------------- agent ticket_item_params is #{ticket_item_params.inspect}"
     ticket_item = TicketItem.new(ticket_item_params.merge(agent_id: current_user.id))
     if ticket_item.save
       render json: ticket_item, status: :created, meta: default_meta

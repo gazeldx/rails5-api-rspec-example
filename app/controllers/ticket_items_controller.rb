@@ -3,7 +3,6 @@ class TicketItemsController < CustomerBaseController
   before_action :validate_type, only: [:create]
 
   def create
-    puts "--------------- =============== customer ticket_item_params is #{ticket_item_params.inspect}"
     ticket_item = TicketItem.new(ticket_item_params)
     if ticket_item.save
       render json: ticket_item, status: :created, meta: default_meta

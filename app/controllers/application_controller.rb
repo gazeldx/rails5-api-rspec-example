@@ -12,14 +12,12 @@ class ApplicationController < ActionController::API
   end
 
   def validate_type
-    puts "params[:controller] is #{params[:controller].inspect}"
-    puts "params['data'] is #{params[:data].inspect}"
-    puts "params is #{params.inspect}"
     if params['data'] && params['data']['type']
       if params['data']['type'] == params[:controller].sub(/^*.*\//, '').singularize
         return true
       end
     end
+
     head 409 and return
   end
 

@@ -4,8 +4,6 @@ class CustomerBaseController < ApplicationController
   private
 
   def validate_customer_login
-    puts "================== xxxx customer request.parameters is #{request.parameters.inspect}"
-
     token = request.headers["X-Api-Key"]
     return unless token
 

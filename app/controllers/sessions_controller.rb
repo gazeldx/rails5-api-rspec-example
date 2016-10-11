@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
   def create
     data = ActiveModelSerializers::Deserialization.jsonapi_parse(params)
-    # puts "session data is #{data.inspect} =================="
-    # Rails.logger.info params.to_yaml
 
     customer = Customer.where(email: data[:email]).first
     head 406 and return unless customer

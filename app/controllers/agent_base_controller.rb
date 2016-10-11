@@ -4,8 +4,6 @@ class AgentBaseController < ApplicationController
   private
 
   def validate_agent_login
-    puts "agent request.parameters is #{request.parameters.inspect}"
-
     token = request.headers["X-Api-Key"]
     return unless token
 

@@ -1,5 +1,6 @@
 class Agent::ReportController < ActionController::API
   def closed_tickets_last_month
+    # TODO: authentication
     tickets = Ticket.where(state: 'Closed', created_at: Date.today.last_month.at_beginning_of_month..Date.today.at_beginning_of_month).includes(:customer, :agent).order(id: :asc)
     pdf = WickedPdf.new.pdf_from_string(report_html(tickets))
     send_data(pdf, :filename => "closed_tickets_#{Date.today.last_month.at_beginning_of_month.strftime("%Y%m")}.pdf", :disposition => 'attachment')

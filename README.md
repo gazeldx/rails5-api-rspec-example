@@ -1,23 +1,36 @@
 # Installation
-## Ruby and Rails version
-We use [rbenv](https://github.com/rbenv/rbenv) and [rbenv-gemset](https://github.com/jf/rbenv-gemset).
-So please install `rbenv` and `rbenv-gemset` first.
-
-Then 
+## Mysql
+### Installation
+#### For Mac
 ```bash
-$ cd /path/to/tickets
-$ bundle
-$ rails db:create
-$ rails db:migrate
-$ puma # Then you can go to http://localhost:3000/
+brew install mysql
+cd $(brew --prefix mysql)
+mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql
+cd /usr/local/var/mysql
+mysql.server start
 ```
 
-# TODO
+## Ruby and Rails version
+We use [rbenv](https://github.com/rbenv/rbenv) and [rbenv-gemset](https://github.com/jf/rbenv-gemset).
+
+So please install `rbenv` and `rbenv-gemset` first.
+
+## Install tickets project
+```bash
+cd /path/to/tickets
+bundle
+rails db:create
+rails db:migrate
+rails db:seed
+puma # Then you can go to http://localhost:3000/
+```
+
+# TODOs
+* Add rspec tests.
+
 * Versioning API. Before releasing our public API into the wild, we should consider implementing some form of versioning. Versioning breaks our API up into multiple version namespaces, such as v1 and v2, so that we can maintain backwards compatibility for existing clients whenever we introduce breaking changes into your API, simply by incrementing your API version.
-Then we will GET like this: http://api.mysite.com/v1/users/
 
-
-
+Then we can GET like this: http://api.mysite.com/v1/users/
 
 # Design
 ## Tickets
@@ -32,19 +45,3 @@ Here are five values for status: New, Open, Pending, Solved, Closed. A ticket's 
 * Solved means that the agent has resolved the support issue. Solved tickets are closed, typically, a number of days after they have been set to Solved (you can control when your tickets are closed by modifying the automation that is used to close tickets). Until a ticket is closed, the requester can reopen the ticket. For example, the requester may not agree with the agent that the support issue is resolved.
 
 * Closed means that the ticket is complete and can't be reopened. Requesters however can create follow-up requests for closed requests.
-
-
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

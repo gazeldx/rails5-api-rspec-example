@@ -4,14 +4,8 @@ class TicketsController < CustomerBaseController
   before_action :set_ticket, only: [:show]
 
   def index
-    pdf = WickedPdf.new.pdf_from_string('<h1>Hello There!</h1>')
-    send_data(pdf, :filename => "my_pdf_name.pdf",
-                   :disposition => 'attachment')
-
-
-    # TODO: add includes ?
-    # tickets = current_user.tickets.order(created_at: :desc).page(params[:page] ? params[:page][:number] : 1)
-    # render json: tickets, meta: pagination_meta(tickets).merge(default_meta), include: [:agent]
+    tickets = current_user.tickets.includes(:agent, :ticket_items).order(created_at: :desc).page(params[:page] ? params[:page][:number] : 1)
+    render json: tickets, meta: pagination_meta(tickets).merge(default_meta), include: [:agent]
   end
 
   def show
@@ -19,7 +13,6 @@ class TicketsController < CustomerBaseController
   end
 
   def create
-    puts "--------------- ticket_params is #{ticket_params.inspect}"
     ticket = current_user.tickets.build(ticket_params)
     if ticket.save
       render json: ticket, status: :created, meta: default_meta
@@ -34,6 +27,7 @@ class TicketsController < CustomerBaseController
     begin
       @ticket = Ticket.find(params[:id])
     rescue ActiveRecord::RecordNotFound
+      # TODO: refactor
       ticket = Ticket.new
       ticket.errors.add(:id, "Wrong ID provided")
       render_error(ticket, 404) and return
