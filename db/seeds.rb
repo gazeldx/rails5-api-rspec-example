@@ -5,15 +5,47 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Administrator.delete_all
+Customer.delete_all
+Agent.delete_all
+Ticket.delete_all
 
-Customer.create(email: 'zjloveztt@gmail.com', token: 'token1', full_name: 'Lane Zhang', password_digest: BCrypt::Password.create('password1').to_s, description: 'RoR and JS full stack developer')
-Customer.create(email: 'brucewang@163.com', token: 'token2', full_name: 'Bruce Lee', password_digest: BCrypt::Password.create('password2').to_s, description: 'Best Sales')
-Customer.create(email: 'jetlee@163.com', token: 'token3', full_name: 'Jet Lee', password_digest: BCrypt::Password.create('password3').to_s, description: 'I love Taiji')
+Customer.create(email: 'billgates@microsoft.com',
+                token: 'token1',
+                full_name: 'Bill Gates',
+                password_digest: BCrypt::Password.create('password1').to_s,
+                description: 'President of Microsoft')
+Customer.create(email: 'stevejobs@apple.com',
+                token: 'token2',
+                full_name: 'Steve Jobs',
+                password_digest: BCrypt::Password.create('password2').to_s,
+                description: 'Soul of Apple')
+Customer.create(email: 'larryellison@oracle.com',
+                token: 'token3',
+                full_name: 'Larry Ellison',
+                password_digest: BCrypt::Password.create('password3').to_s,
+                description: 'Oracle captain')
 
-Agent.create(email: 'jackiechan@agent123.com', token: 'token3', full_name: 'Jackie Chan', password_digest: BCrypt::Password.create('password3').to_s, description: 'He will give it a shot.')
-Agent.create(email: 'wang@123.com', token: 'token5', full_name: 'Hegwin Wang', password_digest: BCrypt::Password.create('password5').to_s, description: "Hegwin's oral English is good.")
+Agent.create(email: 'jetlee@agent.com',
+             token: 'token1',
+             full_name: 'Jet Lee',
+             password_digest: BCrypt::Password.create('password1').to_s,
+             description: 'I like Charities.')
+Agent.create(email: 'jackiechan@agent.com',
+             token: 'token2',
+             full_name: 'Jackie Chan',
+             password_digest: BCrypt::Password.create('password2').to_s,
+             description: 'I rarely use substitute.')
+Agent.create(email: 'jimcarrey@agent.com',
+             token: 'token3',
+             full_name: 'Jim Carrey',
+             password_digest: BCrypt::Password.create('password3').to_s,
+             description: 'If I could intrude a note of seriousness into this frivolous conversation.')
 
-Administrator.create(email: 'admin@admin.com', token: 'token6', full_name: 'Alex', password_digest: BCrypt::Password.create('password6').to_s, description: "Alex's administrator.")
+Administrator.create(email: 'admin@agent.com',
+                     token: 'token1',
+                     full_name: 'John Johns',
+                     password_digest: BCrypt::Password.create('password1').to_s,
+                     description: "I am on vacation.")
 
 Ticket.create(customer_id: 1, title: 'I lost my shoes.', content: 'When I was skating yesterday.')
-

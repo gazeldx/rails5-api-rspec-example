@@ -4,6 +4,8 @@ class Agent < ApplicationRecord
 
   has_many :tickets
 
+  scope :default, -> { find_by_email('jetlee@agent.com') }
+
   validates :email, presence: true, uniqueness: true
   validates :token, presence: true, uniqueness: true
 

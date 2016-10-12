@@ -13,7 +13,7 @@ class TicketsController < CustomerBaseController
   end
 
   def create
-    ticket = current_user.tickets.build(ticket_params)
+    ticket = current_user.tickets.build(ticket_params.merge(agent: Agent.default))
     if ticket.save
       render json: ticket, status: :created, meta: default_meta
     else
@@ -35,6 +35,6 @@ class TicketsController < CustomerBaseController
   end
 
   def ticket_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:title, :content, :state, :customer, :agent_id])
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:title, :content, :state])
   end
 end
