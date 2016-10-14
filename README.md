@@ -42,8 +42,6 @@ rspec
 ```
 
 # TODOs
-* Add rspec tests.
-
 * Versioning API. Before releasing our public API into the wild, we should consider implementing some form of versioning. Versioning breaks our API up into multiple version namespaces, such as v1 and v2, so that we can maintain backwards compatibility for existing clients whenever we introduce breaking changes into your API, simply by incrementing your API version.
 
 Then we can GET like this: http://api.mysite.com/v1/users/
