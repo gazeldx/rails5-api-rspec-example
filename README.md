@@ -25,7 +25,7 @@ We use [rbenv](https://github.com/rbenv/rbenv) and [rbenv-gemset](https://github
 
 So please install `rbenv` and `rbenv-gemset` first.
 
-## Install tickets project
+## Install 'rails5-api-rspec-example' project
 ```bash
 cd /path/to/tickets
 bundle
