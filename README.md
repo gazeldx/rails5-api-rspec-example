@@ -7,8 +7,10 @@ The front-end for this API is [https://github.com/gazeldx/vue-spa-example](https
 You can run it to see how this API interactive with example SPA Web.
 
 # Installation
-## Mysql
-### Installation
+## Database
+This project I use mysql. You can easily replace MySQL to your favorite database like PostgreSQL. You can do this by editing `Gemfile` and `config/database.yml` 
+
+### Installation Mysql
 #### For Mac
 ```bash
 brew install mysql
