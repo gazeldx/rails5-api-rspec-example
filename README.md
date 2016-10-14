@@ -1,3 +1,11 @@
+# Rails 5 API + Rspec example
+
+> Customer Support Ticketing API.
+
+## Front-end
+The front-end for this API is [https://github.com/gazeldx/vue-spa-example](https://github.com/gazeldx/vue-spa-example)
+You can run it to see how this API interactive with example SPA Web.
+
 # Installation
 ## Mysql
 ### Installation
@@ -23,6 +31,14 @@ rails db:create
 rails db:migrate
 rails db:seed
 puma # Then you can go to http://localhost:3000/
+```
+
+# Testing
+```bash
+cd /path/to/tickets
+RAILS_ENV=test rails db:migrate
+RAILS_ENV=test rails db:seed
+rspec
 ```
 
 # TODOs

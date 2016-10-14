@@ -1,7 +1,12 @@
 class SessionsController < ApplicationController
   def create
+    puts "params is #{params.inspect}"
+
     data = ActiveModelSerializers::Deserialization.jsonapi_parse(params)
 
+    puts "data is #{data.inspect}"
+
+    puts "Customer.all is #{Customer.all.inspect}"
     customer = Customer.where(email: data[:email]).first
     head 406 and return unless customer
 

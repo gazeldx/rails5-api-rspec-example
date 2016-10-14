@@ -5,6 +5,7 @@ class ApplicationController < ActionController::API
 
   def check_header
     if ['POST', 'PUT', 'PATCH'].include?(request.method)
+      puts "============== #{request.content_type} #{request.content_type == "application/vnd.api+json"} =========="
       if request.content_type != "application/vnd.api+json"
         head 406 and return
       end

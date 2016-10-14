@@ -4,8 +4,10 @@ class TicketsController < CustomerBaseController
   before_action :set_ticket, only: [:show]
 
   def index
-    tickets = current_user.tickets.includes(:agent, :ticket_items).order(created_at: :desc).page(params[:page] ? params[:page][:number] : 1)
-    render json: tickets, meta: pagination_meta(tickets).merge(default_meta), include: [:agent]
+    puts "current_user is ============= #{current_user.inspect}"
+    @tickets = current_user.tickets.includes(:agent, :ticket_items).order(created_at: :desc).page(params[:page] ? params[:page][:number] : 1)
+
+    render json: @tickets, meta: pagination_meta(@tickets).merge(default_meta), include: [:agent]
   end
 
   def show
@@ -13,11 +15,11 @@ class TicketsController < CustomerBaseController
   end
 
   def create
-    ticket = current_user.tickets.build(ticket_params.merge(agent: Agent.default))
-    if ticket.save
-      render json: ticket, status: :created, meta: default_meta
+    @ticket = current_user.tickets.build(ticket_params.merge(agent: Agent.default))
+    if @ticket.save
+      render json: @ticket, status: :created, meta: default_meta
     else
-      render_error(ticket, :unprocessable_entity)
+      render_error(@ticket, :unprocessable_entity)
     end
   end
 
